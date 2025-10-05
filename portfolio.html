@@ -1,0 +1,1028 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us - EK-Alpha Solutions</title>
+    
+    <link rel="stylesheet" href="style.css"> 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css" integrity="sha512-DxV+EoADOkOygM4IR9yXP8Sb2qwgidEmeqAEmDKIOfPRQZOWbXCzLC6vjbZyy0vPisbH2SyW27+ddLVCN+OMzQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+        <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+    
+    /* Portfolio Page Specific Styles */
+.portfolio-hero-section {
+    background: linear-gradient(135deg, var(--primary-blue) 0%, var(--dark-blue) 100%);
+    color: var(--white);
+    padding: 120px 0 80px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.portfolio-hero-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000"><polygon fill="rgba(255,255,255,0.05)" points="0,1000 1000,0 1000,1000"/></svg>');
+    background-size: cover;
+}
+
+.hero-content h1 {
+    font-size: 3.5em;
+    font-weight: 800;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.hero-content h2 {
+    font-size: 1.8em;
+    font-weight: 400;
+    margin-bottom: 30px;
+    opacity: 0.9;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.hero-cta-btn {
+    display: inline-block;
+    background: var(--primary-red);
+    color: var(--white);
+    padding: 15px 30px;
+    border-radius: 30px;
+    text-decoration: none;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: all 0.3s ease;
+    border: 2px solid var(--primary-red);
+}
+
+.hero-cta-btn:hover {
+    background: transparent;
+    color: var(--white);
+    border-color: var(--white);
+    transform: translateY(-3px);
+}
+
+/* Section Common Styles */
+.portfolio-section {
+    padding: 80px 0;
+}
+
+.section-title {
+    font-size: 2.5em;
+    font-weight: 700;
+    text-align: center;
+    margin-bottom: 20px;
+    color: var(--text-dark);
+}
+
+.section-title strong {
+    color: var(--primary-red);
+}
+
+.section-description {
+    font-size: 1.2em;
+    text-align: center;
+    margin-bottom: 50px;
+    color: var(--text-light);
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.sub-heading {
+    display: block;
+    text-align: center;
+    font-size: 1.1em;
+    font-weight: 600;
+    margin-bottom: 15px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.blue-text {
+    color: var(--primary-blue);
+}
+
+.red-text {
+    color: var(--primary-red);
+}
+
+/* Web Portfolio Section */
+.web-portfolio-section {
+    background: var(--white);
+    padding: 80px 0;
+}
+
+.projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 30px;
+    margin-bottom: 50px;
+}
+
+.project-card {
+    background: var(--white);
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.project-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+}
+
+.project-image {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.project-card:hover .project-image {
+    transform: scale(1.05);
+}
+
+.project-info {
+    padding: 25px;
+}
+
+.project-info h4 {
+    font-size: 1.4em;
+    font-weight: 600;
+    margin-bottom: 10px;
+    color: var(--text-dark);
+}
+
+.project-info p {
+    color: var(--text-light);
+    margin-bottom: 15px;
+    font-size: 0.95em;
+}
+
+.project-link {
+    color: var(--primary-blue);
+    text-decoration: none;
+    font-weight: 600;
+    transition: color 0.3s ease;
+}
+
+.project-link:hover {
+    color: var(--primary-red);
+}
+
+/* Highlight Boxes */
+.highlight-box {
+    background: var(--light-gray);
+    padding: 30px;
+    border-radius: 15px;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    margin-top: 40px;
+}
+
+.highlight-box i {
+    font-size: 2em;
+}
+
+.highlight-box p {
+    margin: 0;
+    font-size: 1.2em;
+    font-weight: 500;
+}
+
+.highlight-box p strong {
+    color: var(--primary-red);
+}
+
+.red-highlight {
+    background: linear-gradient(135deg, var(--primary-red) 0%, var(--dark-red) 100%);
+    color: var(--white);
+}
+
+.blue-highlight {
+    background: linear-gradient(135deg, var(--primary-blue) 0%, var(--dark-blue) 100%);
+    color: var(--white);
+}
+
+/* Social Portfolio Section */
+.social-portfolio-section {
+    background: var(--light-gray);
+    padding: 80px 0;
+}
+
+.case-studies-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    margin-bottom: 50px;
+}
+
+.case-study-card {
+    background: var(--white);
+    padding: 30px;
+    border-radius: 15px;
+    text-align: center;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+}
+
+.case-study-card:hover {
+    transform: translateY(-5px);
+}
+
+.case-study-card i {
+    font-size: 3em;
+    margin-bottom: 20px;
+}
+
+.blue-icon {
+    color: var(--primary-blue);
+}
+
+.red-icon {
+    color: var(--primary-red);
+}
+
+.case-study-card h4 {
+    font-size: 1.3em;
+    font-weight: 600;
+    margin-bottom: 15px;
+    color: var(--text-dark);
+}
+
+.case-study-card p {
+    color: var(--text-light);
+    line-height: 1.6;
+}
+
+.case-study-card p strong {
+    color: var(--primary-red);
+}
+
+/* Insurance Portfolio Section */
+.insurance-portfolio-section {
+    background: var(--white);
+    padding: 80px 0;
+}
+
+.insurance-stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 40px;
+    margin-bottom: 50px;
+}
+
+.stat-item {
+    text-align: center;
+    padding: 30px 20px;
+}
+
+.stat-item i {
+    font-size: 3em;
+    margin-bottom: 20px;
+}
+
+.stat-item h3 {
+    font-size: 2.5em;
+    font-weight: 700;
+    margin-bottom: 10px;
+    color: var(--primary-blue);
+}
+
+.stat-item p {
+    color: var(--text-light);
+    font-size: 1.1em;
+}
+
+.testimonial-card-single {
+    background: var(--light-gray);
+    padding: 40px;
+    border-radius: 15px;
+    text-align: center;
+    max-width: 600px;
+    margin: 0 auto;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+.rating {
+    font-size: 1.5em;
+    color: #ffc107;
+    margin-bottom: 20px;
+}
+
+.testimonial-card-single p {
+    font-style: italic;
+    font-size: 1.2em;
+    margin-bottom: 20px;
+    color: var(--text-dark);
+}
+
+.client-name {
+    color: var(--primary-blue);
+    font-weight: 600;
+}
+
+/* Dispatch Portfolio Section */
+.dispatch-portfolio-section {
+    background: var(--light-gray);
+    padding: 80px 0;
+}
+
+.dispatch-highlights-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    margin-bottom: 50px;
+}
+
+.highlight-point {
+    background: var(--white);
+    padding: 30px;
+    border-radius: 15px;
+    text-align: center;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+}
+
+.highlight-point:hover {
+    transform: translateY(-5px);
+}
+
+.highlight-point i {
+    font-size: 3em;
+    margin-bottom: 20px;
+}
+
+.highlight-point h4 {
+    font-size: 1.3em;
+    font-weight: 600;
+    margin-bottom: 15px;
+    color: var(--text-dark);
+}
+
+.highlight-point p {
+    color: var(--text-light);
+    line-height: 1.6;
+}
+
+.dispatch-visual {
+    text-align: center;
+    margin-top: 40px;
+}
+
+.map-visual {
+    max-width: 100%;
+    height: auto;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+/* Credibility Section */
+.credibility-section {
+    background: var(--white);
+    padding: 80px 0;
+}
+
+.credibility-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 30px;
+    margin-top: 50px;
+}
+
+.credibility-item {
+    text-align: center;
+    padding: 30px 20px;
+}
+
+.credibility-item i {
+    font-size: 3em;
+    margin-bottom: 20px;
+}
+
+.credibility-item h4 {
+    font-size: 1.3em;
+    font-weight: 600;
+    margin-bottom: 15px;
+    color: var(--text-dark);
+}
+
+.credibility-item p {
+    color: var(--text-light);
+    line-height: 1.6;
+}
+
+/* Portfolio CTA Section */
+.portfolio-cta-section {
+    background: linear-gradient(135deg, var(--primary-red) 0%, var(--dark-red) 100%);
+    color: var(--white);
+    padding: 80px 0;
+    text-align: center;
+}
+
+.cta-inner h3 {
+    font-size: 2.5em;
+    margin-bottom: 20px;
+    font-weight: 700;
+}
+
+.cta-inner p {
+    font-size: 1.2em;
+    margin-bottom: 40px;
+    opacity: 0.9;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.primary-cta-btn {
+    background: var(--white);
+    color: var(--primary-red);
+    padding: 15px 30px;
+    border-radius: 30px;
+    text-decoration: none;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: all 0.3s ease;
+    border: 2px solid transparent;
+}
+
+.primary-cta-btn:hover {
+    background: transparent;
+    color: var(--white);
+    border-color: var(--white);
+    transform: translateY(-3px);
+}
+
+/* Footer Styles */
+.site-footer {
+    background: var(--dark-gray);
+    color: var(--white);
+    padding: 60px 0 20px;
+}
+
+.footer-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 40px;
+    margin-bottom: 40px;
+}
+
+.footer-logo {
+    max-width: 150px;
+    margin-bottom: 20px;
+}
+
+.footer-contact .description {
+    margin-bottom: 20px;
+    opacity: 0.8;
+}
+
+.contact-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 15px;
+}
+
+.contact-item a, .contact-item p {
+    color: var(--white);
+    text-decoration: none;
+    opacity: 0.8;
+    transition: opacity 0.3s ease;
+    margin: 0;
+}
+
+.contact-item a:hover {
+    opacity: 1;
+}
+
+.footer-links h4 {
+    color: var(--white);
+    margin-bottom: 20px;
+    font-size: 1.2em;
+}
+
+.footer-links ul {
+    list-style: none;
+    padding: 0;
+}
+
+.footer-links li {
+    margin-bottom: 10px;
+}
+
+.footer-links a {
+    color: var(--white);
+    text-decoration: none;
+    opacity: 0.8;
+    transition: opacity 0.3s ease;
+}
+
+.footer-links a:hover {
+    opacity: 1;
+}
+
+.footer-bottom {
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    padding-top: 20px;
+}
+
+.bottom-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.social-icons {
+    display: flex;
+    gap: 15px;
+}
+
+.social-icons a {
+    color: var(--white);
+    background: rgba(255, 255, 255, 0.1);
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.social-icons a:hover {
+    background: var(--primary-red);
+    transform: translateY(-3px);
+}
+
+/* WhatsApp Button */
+.whatsapp-float {
+    position: fixed;
+    bottom: 25px;
+    right: 25px;
+    z-index: 1000;
+}
+
+.whatsapp-btn {
+    background: #25D366;
+    color: white;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    font-size: 1.8em;
+    box-shadow: 0 5px 15px rgba(37, 211, 102, 0.3);
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.whatsapp-btn:hover {
+    transform: scale(1.1);
+    box-shadow: 0 8px 25px rgba(37, 211, 102, 0.4);
+}
+
+.whatsapp-tooltip {
+    position: absolute;
+    right: 70px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: var(--dark-gray);
+    color: white;
+    padding: 8px 15px;
+    border-radius: 5px;
+    font-size: 0.8em;
+    white-space: nowrap;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+}
+
+.whatsapp-btn:hover .whatsapp-tooltip {
+    opacity: 1;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .hero-content h1 {
+        font-size: 2.5em;
+    }
+    
+    .hero-content h2 {
+        font-size: 1.4em;
+    }
+    
+    .section-title {
+        font-size: 2em;
+    }
+    
+    .projects-grid,
+    .case-studies-grid,
+    .insurance-stats-grid,
+    .dispatch-highlights-grid,
+    .credibility-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .footer-grid {
+        grid-template-columns: 1fr;
+        text-align: center;
+    }
+    
+    .bottom-content {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .highlight-box {
+        flex-direction: column;
+        text-align: center;
+    }
+}
+
+@media (max-width: 480px) {
+    .portfolio-hero-section {
+        padding: 100px 0 60px;
+    }
+    
+    .hero-content h1 {
+        font-size: 2em;
+    }
+    
+    .portfolio-section {
+        padding: 60px 0;
+    }
+    
+    .project-info,
+    .case-study-card,
+    .highlight-point {
+        padding: 20px;
+    }
+}
+
+/* Animation Classes */
+.animate-in {
+    animation: fadeInUp 0.6s ease forwards;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+</style>
+
+</head>
+
+<body>
+     <div id="loading-screen">
+        <div class="loader-content">
+            <div class="loader-logo">EK-ALPHA SOLUTIONS</div>
+            <div class="loader-spinner"></div>
+            <div class="loader-text">Loading Excellence...</div>
+        </div>
+    </div>
+    <nav class="navbar">
+         <div class="nav-title-header">
+        <h1 class="nav-main-title">EK-ALPHA SOLUTIONS</h1>
+    </div>
+        <div class="nav-container">
+            <div class="nav-logo">
+                <a href="index.html"><img src="img/unnamed (28).png" class="logo" alt="EK-Alpha Solutions Logo"></a>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="index.html" class="nav-link">Home</a></li>
+                  <li class="nav-dropdown">
+                    <a href="services.html" class="nav-link" id="active">Services</a>
+                    <ul class="dropdown-menu">
+                        <li><a href="truck-dispatch.html">Truck Dispatch</a></li>
+                        <li><a href="medicare.html">Medicare</a></li>
+                        <li><a href="home&autoinsurance.html">Home&Auto Insurance</a></li>
+                        <li><a href="Web Development.html">Web Development</a></li>
+                        <li><a href="social media marketing.html">Social Media Marketing</a></li>
+                    </ul>
+                </li>
+                <li><a href="carrier setup.html" class="nav-link">Carrier Setup</a></li>
+                <li><a href="about.html" class="nav-link" >About US</a></li> 
+                <li><a href="contact.html" class="nav-link">Contact US</a></li>
+                <a href="tel:+107833464378" id="tel"><button class="but">Call Us: +10 783 346 4378</button></a>
+            </ul>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+<section class="portfolio-hero-section">
+    <div class="container">
+        <div class="hero-content">
+            <h1>Our Portfolio</h1>
+            <h2>Showcasing the success stories and projects that define who we are.</h2>
+            <a href="services.html" class="hero-cta-btn">View Our Services →</a>
+        </div>
+    </div>
+</section>
+
+<section class="web-portfolio-section">
+    <div class="container">
+        <span class="sub-heading blue-text">💻 Custom Websites That Deliver Results</span>
+        <h2 class="section-title">Web Development **Success Stories**</h2>
+        <p class="section-description">We design websites that are fast, responsive, and client-focused, turning visitors into leads and customers.</p>
+        
+        <div class="projects-grid">
+            
+            <div class="project-card">
+                <img src="img/web-project-corporate.jpg" alt="Corporate Website Demo" class="project-image">
+                <div class="project-info">
+                    <h4>Business Website Demo</h4>
+                    <p>Corporate site with professional branding and advanced lead generation tools.</p>
+                    <a href="#" class="project-link" target="_blank">View Live Demo →</a>
+                </div>
+            </div>
+            
+            <div class="project-card">
+                <img src="img/web-project-ecommerce.jpg" alt="E-Commerce Store" class="project-image">
+                <div class="project-info">
+                    <h4>E-Commerce Store</h4>
+                    <p>Online shop integration with secure payment gateway and SEO optimization.</p>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <img src="img/web-project-portfolio.jpg" alt="Portfolio Website" class="project-image">
+                <div class="project-info">
+                    <h4>Professional Portfolio Site</h4>
+                    <p>Personal branding site with responsive design and high-speed loading.</p>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <img src="img/web-project-custom.jpg" alt="Custom Web Application" class="project-image">
+                <div class="project-info">
+                    <h4>Custom Application</h4>
+                    <p>Tailored web app for client workflow automation and data management.</p>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="highlight-box red-highlight">
+            <i class="fas fa-rocket"></i>
+            <p>Our web solutions helped small businesses **increase online sales by up to 55%** in 3 months.</p>
+        </div>
+    </div>
+</section>
+
+<section class="social-portfolio-section">
+    <div class="container">
+        <span class="sub-heading red-text">📱 Creative Campaigns, Real Results</span>
+        <h2 class="section-title">Social Media **Marketing Case Studies**</h2>
+        
+        <div class="case-studies-grid">
+            
+            <div class="case-study-card">
+                <i class="fas fa-chart-line blue-icon"></i>
+                <h4>Restaurant Brand Growth</h4>
+                <p>Achieved **+40% customer engagement** with targeted, visual Instagram ad campaigns.</p>
+            </div>
+            
+            <div class="case-study-card">
+                <i class="fas fa-shopping-cart red-icon"></i>
+                <h4>E-Commerce Sales Boost</h4>
+                <p>Drove **+55% sales growth** in 3 months using optimized Facebook retargeting campaigns.</p>
+            </div>
+            
+            <div class="case-study-card">
+                <i class="fas fa-user-friends blue-icon"></i>
+                <h4>Influencer Branding</h4>
+                <p>Grew a personal profile by **10K followers** in 6 months through consistent, high-value content strategy.</p>
+            </div>
+
+        </div>
+
+        <div class="highlight-box blue-highlight">
+            <i class="fas fa-bullhorn"></i>
+            <p>Our campaigns reach the right people, at the right time, with the **right message**.</p>
+        </div>
+    </div>
+</section>
+
+<section class="insurance-portfolio-section">
+    <div class="container">
+        <span class="sub-heading blue-text">🛡 Protecting What Matters Most</span>
+        <h2 class="section-title">Insurance Services: **Client Trust**</h2>
+        
+        <div class="insurance-stats-grid">
+            <div class="stat-item">
+                <i class="fas fa-users red-icon"></i>
+                <h3>50+</h3>
+                <p>Families secured with Medicare</p>
+            </div>
+            <div class="stat-item">
+                <i class="fas fa-car blue-icon"></i>
+                <h3>Custom</h3>
+                <p>Home & Auto policies delivered</p>
+            </div>
+            <div class="stat-item">
+                <i class="fas fa-hands-helping red-icon"></i>
+                <h3>Transparent</h3>
+                <p>Advice on best coverage rates</p>
+            </div>
+        </div>
+
+        <div class="testimonial-card-single">
+            <div class="rating">⭐⭐⭐⭐⭐</div>
+            <p>“EK-Alpha Solutions made Medicare easy to understand. I saved money and got the coverage I truly needed without any confusion.”</p>
+            <span class="client-name">– Satisfied Medicare Client</span>
+        </div>
+    </div>
+</section>
+
+<section class="dispatch-portfolio-section">
+    <div class="container">
+        <span class="sub-heading red-text">🚚 Smart Logistics & Efficient Operations</span>
+        <h2 class="section-title">Truck Dispatch **Case Highlights**</h2>
+        
+        <div class="dispatch-highlights-grid">
+            
+            <div class="highlight-point">
+                <i class="fas fa-road red-icon"></i>
+                <h4>4 States Coverage</h4>
+                <p>Coordinated dispatch for independent drivers across four major logistics states, ensuring constant load flow.</p>
+            </div>
+            
+            <div class="highlight-point">
+                <i class="fas fa-gas-pump blue-icon"></i>
+                <h4>30% Empty Mile Reduction</h4>
+                <p>Reduced non-revenue generating (empty) miles by 30% through advanced, efficient load planning.</p>
+            </div>
+            
+            <div class="highlight-point">
+                <i class="fas fa-headset red-icon"></i>
+                <h4>24/7 Connectivity</h4>
+                <p>Provided round-the-clock support, keeping drivers, brokers, and logistics managers connected at all times.</p>
+            </div>
+        </div>
+        
+        <div class="dispatch-visual">
+            <img src="img/dispatch-route-map.png" alt="Map graphic showing efficient dispatch routes" class="map-visual">
+        </div>
+    </div>
+</section>
+
+<section class="credibility-section">
+    <div class="container">
+        <h2 class="section-title">Why EK-Alpha is Your **Best Partner**</h2>
+        <div class="credibility-grid">
+            <div class="credibility-item">
+                <i class="fas fa-globe red-icon"></i>
+                <h4>International Reach</h4>
+                <p>Global presence with a strategic focus on U.S. logistics and business services.</p>
+            </div>
+            <div class="credibility-item">
+                <i class="fas fa-dollar-sign blue-icon"></i>
+                <h4>Affordable & Transparent</h4>
+                <p>Clear, competitive pricing with no hidden fees or surprise costs.</p>
+            </div>
+            <div class="credibility-item">
+                <i class="fas fa-users-cog red-icon"></i>
+                <h4>Experienced Team</h4>
+                <p>Skilled professionals who know the industry trends and compliance needs.</p>
+            </div>
+            <div class="credibility-item">
+                <i class="fas fa-clock blue-icon"></i>
+                <h4>24/7 Support</h4>
+                <p>Dedicated client support always available to answer questions and resolve issues.</p>
+            </div>
+            <div class="credibility-item">
+                <i class="fas fa-chart-bar red-icon"></i>
+                <h4>Results-Driven</h4>
+                <p>Strategies built for measurable growth, focusing on your bottom line.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="portfolio-cta-section">
+    <div class="container">
+        <div class="cta-inner">
+            <h3>Ready to make your project a success?</h3>
+            <p>Let’s add your story to our portfolio. Contact us today for a custom consultation.</p>
+            <a href="contact.html" class="primary-cta-btn">Contact Us Today →</a>
+        </div>
+    </div>
+</section>
+    <footer class="site-footer">
+        <div class="container footer-grid">
+            
+            <div class="footer-contact">
+                <a href="#"><img src="img/unnamed (28).png" alt="EK-Alpha Logo" class="footer-logo"></a>
+                <p class="description">Providing comprehensive, trusted solutions for logistics, security, and personal services.</p>
+                <div class="contact-item">
+                    <i class="fas fa-phone red-icon"></i>
+                    <a href="tel:+16473611093">+1 (647) 361-1093</a>
+                </div>
+                <div class="contact-item">
+                    <i class="fas fa-envelope red-icon"></i>
+                    <a href="mailto:info@ekalpha.com">info@ekalpha.com</a>
+                </div>
+                <div class="contact-item">
+                    <i class="fas fa-map-marker-alt red-icon"></i>
+                    <p>3524 Silverside Rd Ste 35B, Wilmington, DE 19810, United States</p>
+                </div>
+            </div>
+
+            <div class="footer-links">
+                <h4>Company</h4>
+                <ul>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="contact.html">Contact Us</a></li>
+                    <li><a href="services.html">Services & Pricing</a></li>
+                    <li><a href="Portfolio.html">Our Portfolio</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-links">
+                <h4>Services</h4>
+                <ul>
+<li><a href="truck-dispatch.html">Truck Dispatch Services</a></li>
+                    <li><a href="medicare.html">Medicare</a></li>
+                    <li><a href="home&autoinsurance.html">Home&Auto Insurance</a></li>
+                    <li><a href="Web Development.html">Web Development</a></li>
+                    <li><a href="social media marketing.html">Social Media Marketing</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-links">
+                <h4>Resources</h4>
+                <ul>
+                    <li><a href="#faq">FAQ</a></li>
+                    <li><a href="#">How to Get Started</a></li>
+                    <li><a href="#">Privacy Policy</a></li>
+                    <li><a href="#">Terms of Service</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <div class="container bottom-content">
+                <p>&copy; Copyright 2024 EK-Alpha Solutions. All rights reserved.</p>
+                 <div class="nav-right">
+                <div class="social-icons">
+                    <a href="https://web.facebook.com/profile.php?id=61578832953435" target="_blank" rel="noopener">
+                        <i class="fab fa-facebook-f"></i>
+                    </a>
+                    <a href="https://www.instagram.com/saflareadsmarketing/" target="_blank" rel="noopener">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                    <a href="https://www.linkedin.com/in/sa-flare-ads-marketing-418862377/" target="_blank" rel="noopener">
+                        <i class="fab fa-linkedin-in"></i>
+                    </a>
+                    <a href="https://www.youtube.com/@SAFlareAdsMarketing" target="_blank" rel="noopener">
+                        <i class="fab fa-youtube"></i>
+                    </a>
+                    <a href="https://vm.tiktok.com/ZSSkMBK7F/" target="_blank" rel="noopener">
+                        <i class="fab fa-tiktok"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </footer>
+        <!-- WhatsApp Floating Button -->
+    <div class="whatsapp-float">
+        <!-- Updated WhatsApp button color to exact green specified in blueprint -->
+        <a href="https://wa.me/03261310688?text=Hi! I'm interested in getting an insurance quote." target="_blank" class="whatsapp-btn">
+            <i class="fab fa-whatsapp"></i>
+            <span class="whatsapp-tooltip">Chat with us on WhatsApp</span>
+        </a>
+    </div>
+    <script src="app.js"></script> 
+</body>
+</html>

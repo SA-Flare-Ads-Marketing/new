@@ -1,0 +1,870 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EK-Alpha Solutions - Professional Business Services</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-blue: #007bff;
+            --primary-red: #e60000;
+            --dark-blue: #0056b3;
+            --dark-red: #cc0000;
+            --light-gray: #f8f9fa;
+            --medium-gray: #e9ecef;
+            --dark-gray: #343a40;
+            --text-dark: #212529;
+            --text-light: #6c757d;
+            --white: #ffffff;
+            --black: #000000;
+            --shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            line-height: 1.6;
+            color: var(--text-dark);
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Loading Screen */
+        #loading-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--white);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            transition: opacity 0.5s ease;
+        }
+
+        .loader-content {
+            text-align: center;
+        }
+
+        .loader-logo {
+            font-size: 2.5em;
+            font-weight: 800;
+            color: var(--primary-blue);
+            margin-bottom: 20px;
+        }
+
+        .loader-spinner {
+            width: 50px;
+            height: 50px;
+            border: 4px solid var(--medium-gray);
+            border-top: 4px solid var(--primary-red);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 20px;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Navigation */
+        .navbar {
+            background: var(--white);
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+        }
+
+        .nav-title-header {
+            background: linear-gradient(135deg, var(--primary-blue), var(--dark-blue));
+            padding: 10px 0;
+            text-align: center;
+        }
+
+        .nav-main-title {
+            color: var(--white);
+            font-size: 1.2em;
+            font-weight: 600;
+            margin: 0;
+            letter-spacing: 1px;
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+        }
+
+        .logo {
+            height: 50px;
+            width: auto;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            align-items: center;
+            gap: 30px;
+        }
+
+        .nav-link {
+            text-decoration: none;
+            color: var(--text-dark);
+            font-weight: 500;
+            transition: var(--transition);
+            position: relative;
+        }
+
+        .nav-link:hover,
+        .nav-link.active {
+            color: var(--primary-blue);
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--primary-blue);
+            transition: var(--transition);
+        }
+
+        .nav-link:hover::after,
+        .nav-link.active::after {
+            width: 100%;
+        }
+
+        .nav-dropdown {
+            position: relative;
+        }
+
+        .dropdown-menu {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background: var(--white);
+            box-shadow: var(--shadow);
+            border-radius: 10px;
+            padding: 15px 0;
+            min-width: 200px;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(10px);
+            transition: var(--transition);
+            list-style: none;
+        }
+
+        .nav-dropdown:hover .dropdown-menu {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .dropdown-menu li {
+            padding: 0;
+        }
+
+        .dropdown-menu a {
+            display: block;
+            padding: 10px 20px;
+            color: var(--text-dark);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .dropdown-menu a:hover {
+            background: var(--light-gray);
+            color: var(--primary-blue);
+        }
+
+        .but {
+            background: var(--primary-red);
+            color: var(--white);
+            border: none;
+            padding: 12px 25px;
+            border-radius: 25px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .but:hover {
+            background: var(--dark-red);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(230, 0, 0, 0.3);
+        }
+
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            background: none;
+            border: none;
+            cursor: pointer;
+        }
+
+        .hamburger span {
+            width: 25px;
+            height: 3px;
+            background: var(--text-dark);
+            margin: 3px 0;
+            transition: var(--transition);
+        }
+
+        /* Hero Sections */
+        .medicare-hero {
+            background: linear-gradient(135deg, var(--light-gray) 0%, var(--medium-gray) 100%);
+            padding: 150px 0 80px;
+            text-align: center;
+            border-bottom: 5px solid var(--primary-red);
+        }
+
+        .medicare-hero h1 {
+            font-size: 3em;
+            font-weight: 800;
+            margin-bottom: 20px;
+            color: var(--text-dark);
+        }
+
+        .medicare-hero h2 {
+            font-size: 1.5em;
+            font-weight: 400;
+            margin-bottom: 30px;
+            color: var(--text-light);
+        }
+
+        .medicare-hero p {
+            font-size: 1.2em;
+            max-width: 600px;
+            margin: 0 auto;
+            color: var(--text-light);
+        }
+
+        /* Section Spacing */
+        .section-spacing {
+            padding: 80px 0;
+        }
+
+        .section-title {
+            font-size: 2.5em;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 20px;
+            color: var(--text-dark);
+        }
+
+        .section-subtitle {
+            font-size: 1.1em;
+            text-align: center;
+            margin-bottom: 50px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 600;
+        }
+
+        .blue {
+            color: var(--primary-blue);
+        }
+
+        .red {
+            color: var(--primary-red);
+        }
+
+        /* Info Sections */
+        .medicare-info-section {
+            background: var(--white);
+            padding: 80px 0;
+        }
+
+        .medicare-content-wrapper {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 50px;
+            align-items: start;
+        }
+
+        .medicare-text h2 {
+            font-size: 2.2em;
+            margin-bottom: 20px;
+            color: var(--text-dark);
+        }
+
+        .medicare-text h3 {
+            font-size: 1.8em;
+            margin: 40px 0 20px;
+            color: var(--primary-blue);
+        }
+
+        .medicare-text p {
+            margin-bottom: 20px;
+            color: var(--text-light);
+            line-height: 1.8;
+        }
+
+        .medicare-part {
+            background: var(--light-gray);
+            padding: 25px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            border-left: 4px solid var(--primary-blue);
+        }
+
+        .medicare-part h4 {
+            color: var(--primary-blue);
+            margin-bottom: 10px;
+            font-size: 1.2em;
+        }
+
+        .leadership-highlight {
+            background: linear-gradient(135deg, var(--primary-red), var(--dark-red));
+            color: var(--white);
+            padding: 30px;
+            border-radius: 15px;
+            margin-top: 40px;
+            text-align: center;
+        }
+
+        .red-text {
+            color: var(--white);
+            font-size: 1.2em;
+            font-style: italic;
+            margin: 0;
+        }
+
+        .medicare-image {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .image-placeholder {
+            background: var(--light-gray);
+            padding: 40px;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: var(--shadow);
+            width: 100%;
+        }
+
+        /* Mission & Vision */
+        .mission-vision-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            margin-top: 50px;
+        }
+
+        .mission-card, .vision-card {
+            background: var(--white);
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: var(--shadow);
+            text-align: center;
+            transition: var(--transition);
+        }
+
+        .mission-card:hover, .vision-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .mission-card i, .vision-card i {
+            color: var(--primary-blue);
+            margin-bottom: 20px;
+        }
+
+        .card-title {
+            font-size: 1.5em;
+            font-weight: 600;
+            margin-bottom: 20px;
+            color: var(--text-dark);
+        }
+
+        /* Values Grid */
+        .values-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .value-card {
+            background: var(--white);
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: var(--shadow);
+            text-align: center;
+            transition: var(--transition);
+        }
+
+        .value-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .value-card i {
+            color: var(--primary-blue);
+            margin-bottom: 20px;
+        }
+
+        .value-card h4 {
+            font-size: 1.3em;
+            font-weight: 600;
+            margin-bottom: 15px;
+            color: var(--text-dark);
+        }
+
+        .value-card p {
+            color: var(--text-light);
+            line-height: 1.6;
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--dark-gray);
+            color: var(--white);
+            padding: 60px 0 20px;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-logo {
+            max-width: 150px;
+            margin-bottom: 20px;
+        }
+
+        .footer-section p {
+            opacity: 0.8;
+            margin-bottom: 20px;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+        }
+
+        .social-links a {
+            color: var(--white);
+            background: rgba(255, 255, 255, 0.1);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .social-links a:hover {
+            background: var(--primary-red);
+            transform: translateY(-3px);
+        }
+
+        .footer-section h3 {
+            color: var(--white);
+            margin-bottom: 20px;
+            font-size: 1.2em;
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section li {
+            margin-bottom: 10px;
+        }
+
+        .footer-section a {
+            color: var(--white);
+            text-decoration: none;
+            opacity: 0.8;
+            transition: var(--transition);
+        }
+
+        .footer-section a:hover {
+            opacity: 1;
+            color: var(--primary-blue);
+        }
+
+        .contact-info p {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding-top: 20px;
+            text-align: center;
+        }
+
+        /* WhatsApp Button */
+        .whatsapp-float {
+            position: fixed;
+            bottom: 25px;
+            right: 25px;
+            z-index: 1000;
+        }
+
+        .whatsapp-btn {
+            background: #25D366;
+            color: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            font-size: 1.8em;
+            box-shadow: 0 5px 15px rgba(37, 211, 102, 0.3);
+            transition: var(--transition);
+            position: relative;
+        }
+
+        .whatsapp-btn:hover {
+            transform: scale(1.1);
+            box-shadow: 0 8px 25px rgba(37, 211, 102, 0.4);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-menu {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background: var(--white);
+                flex-direction: column;
+                padding: 20px;
+                box-shadow: var(--shadow);
+            }
+
+            .nav-menu.active {
+                display: flex;
+            }
+
+            .hamburger {
+                display: flex;
+            }
+
+            .medicare-content-wrapper {
+                grid-template-columns: 1fr;
+            }
+
+            .mission-vision-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .medicare-hero h1 {
+                font-size: 2.2em;
+            }
+
+            .section-title {
+                font-size: 2em;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .medicare-hero {
+                padding: 120px 0 60px;
+            }
+
+            .medicare-hero h1 {
+                font-size: 1.8em;
+            }
+
+            .section-spacing {
+                padding: 60px 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Loading Screen -->
+    <div id="loading-screen">
+        <div class="loader-content">
+            <div class="loader-logo">EK-ALPHA SOLUTIONS</div>
+            <div class="loader-spinner"></div>
+            <div class="loader-text">Loading Excellence...</div>
+        </div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-title-header">
+            <h1 class="nav-main-title">EK-ALPHA SOLUTIONS</h1>
+        </div>
+        <div class="nav-container">
+            <img src="img/logo.png" alt="EK-Alpha Logo" class="logo">
+            
+            <ul class="nav-menu">
+                <li><a href="index.html" class="nav-link">Home</a></li>
+                <li class="nav-dropdown">
+                    <a href="#" class="nav-link">Services <i class="fas fa-chevron-down"></i></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="truck-dispatch.html">Truck Dispatch</a></li>
+                        <li><a href="web-development.html">Web Development</a></li>
+                        <li><a href="medicare-services.html">Medicare Services</a></li>
+                        <li><a href="home-auto-insurance.html">Home & Auto Insurance</a></li>
+                        <li><a href="social-media-marketing.html">Social Media Marketing</a></li>
+                    </ul>
+                </li>
+                <li><a href="about.html" class="nav-link active">About Us</a></li>
+                <li><a href="contact.html" class="nav-link">Contact</a></li>
+            </ul>
+
+            <button class="but" id="tel">Call Now</button>
+            
+            <button class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- About Hero Section -->
+    <section class="medicare-hero">
+        <div class="container">
+            <h1>ABOUT EK-ALPHA SOLUTIONS</h1>
+            <h2>Your Trusted Partner in Business Growth</h2>
+            <p>Discover our story, mission, and the dedicated team behind EK-Alpha Solutions - committed to delivering exceptional service and driving your success.</p>
+        </div>
+    </section>
+
+    <!-- Our Story Section -->
+    <div class="medicare-info-section">
+        <div class="container">
+            <div class="medicare-content-wrapper">
+                <div class="medicare-text">
+                    <h2>Our Story</h2>
+                    <p>Founded with a vision to provide comprehensive business solutions, <strong>EK-Alpha Solutions</strong> has grown from a small startup to a trusted partner for businesses across multiple industries. Our journey began with a simple yet powerful idea: to help businesses thrive through expert services and personalized support.</p>
+                    
+                    <p>Over the years, we've expanded our service offerings to include truck dispatch, web development, Medicare services, insurance solutions, and social media marketing. Each service was carefully developed based on market needs and our clients' evolving requirements.</p>
+
+                    <h3>Our Growth Journey</h3>
+                    
+                    <div class="medicare-part">
+                        <h4>2018 - Foundation</h4>
+                        <p>EK-Alpha Solutions was founded with a focus on truck dispatch services, helping small trucking companies optimize their operations and increase profitability.</p>
+                    </div>
+                    
+                    <div class="medicare-part">
+                        <h4>2020 - Expansion</h4>
+                        <p>We expanded our services to include web development and digital marketing, recognizing the growing importance of online presence for business success.</p>
+                    </div>
+                    
+                    <div class="medicare-part">
+                        <h4>2022 - Diversification</h4>
+                        <p>Added Medicare and insurance services to our portfolio, leveraging our expertise to help individuals and businesses navigate complex insurance landscapes.</p>
+                    </div>
+                    
+                    <div class="medicare-part">
+                        <h4>2024 - Innovation</h4>
+                        <p>Continued innovation across all service lines, integrating the latest technologies and strategies to deliver even greater value to our clients.</p>
+                    </div>
+
+                    <div class="leadership-highlight">
+                        <p class="red-text">
+                            <i class="fas fa-quote-left"></i>
+                            Our success is measured by the success of our clients. Every service we provide is designed with one goal in mind: to help your business grow and thrive in today's competitive landscape.
+                        </p>
+                    </div>
+                </div>
+                
+                <div class="medicare-image">
+                    <div class="image-placeholder">
+                        <i class="fas fa-rocket" style="font-size: 4em; color: #007bff;"></i>
+                        <p>Driving Business Success</p>
+                        <small>Since 2018</small>
+                        <div style="margin-top: 20px;">
+                            <i class="fas fa-chart-line" style="font-size: 2em; color: #e60000; margin: 0 10px;"></i>
+                            <i class="fas fa-users" style="font-size: 2em; color: #007bff; margin: 0 10px;"></i>
+                            <i class="fas fa-trophy" style="font-size: 2em; color: #e60000; margin: 0 10px;"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Mission & Vision Section -->
+    <section class="mission-vision-section section-spacing" style="background-color: #f8f9fa;">
+        <div class="container">
+            <h2 class="section-title">Our Mission & Vision</h2>
+            <p class="section-subtitle blue">DRIVING EXCELLENCE IN EVERY SERVICE</p>
+            
+            <div class="mission-vision-grid">
+                <div class="mission-card">
+                    <i class="fas fa-bullseye fa-3x"></i>
+                    <h3 class="card-title">Our Mission</h3>
+                    <p>To empower businesses and individuals with comprehensive, innovative solutions that drive growth, enhance efficiency, and create lasting value. We are committed to delivering exceptional service through expertise, integrity, and a client-first approach that builds trust and fosters long-term partnerships.</p>
+                </div>
+
+                <div class="vision-card">
+                    <i class="fas fa-eye fa-3x"></i>
+                    <h3 class="card-title">Our Vision</h3>
+                    <p>To be the leading provider of integrated business solutions, recognized for our excellence in service delivery, innovation, and our ability to transform businesses through cutting-edge strategies and technologies. We envision a future where every business we serve achieves its full potential through our partnership and expertise.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Our Values Section -->
+    <section class="why-choose-us-section section-spacing" style="background-color: #ffffff;">
+        <div class="container">
+            <h2 class="section-title">Our Core Values</h2>
+            <p class="section-subtitle red">THE PRINCIPLES THAT GUIDE US</p>
+            
+            <div class="values-grid">
+                <div class="value-card">
+                    <i class="fas fa-handshake fa-3x"></i>
+                    <h4>Integrity</h4>
+                    <p>We conduct business with honesty, transparency, and ethical practices. Our clients trust us because we always do what's right, even when no one is watching.</p>
+                </div>
+                
+                <div class="value-card">
+                    <i class="fas fa-lightbulb fa-3x"></i>
+                    <h4>Innovation</h4>
+                    <p>We continuously seek new and better ways to serve our clients. Embracing change and leveraging technology allows us to deliver cutting-edge solutions.</p>
+                </div>
+                
+                <div class="value-card">
+                    <i class="fas fa-users fa-3x"></i>
+                    <h4>Collaboration</h4>
+                    <p>We believe in the power of teamwork - both within our organization and with our clients. Together, we achieve greater results than we ever could alone.</p>
+                </div>
+                
+                <div class="value-card">
+                    <i class="fas fa-trophy fa-3x"></i>
+                    <h4>Excellence</h4>
+                    <p>We strive for excellence in everything we do. From the smallest task to the largest project, we're committed to delivering superior quality and results.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <img src="img/logo.png" alt="EK-Alpha Solutions" class="footer-logo">
+                    <p>Your trusted partner for comprehensive business solutions. Driving growth through innovation and excellence.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                        <li><a href="privacy.html">Privacy Policy</a></li>
+                        <li><a href="terms.html">Terms of Service</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Our Services</h3>
+                    <ul>
+                        <li><a href="truck-dispatch.html">Truck Dispatch</a></li>
+                        <li><a href="web-development.html">Web Development</a></li>
+                        <li><a href="medicare-services.html">Medicare Services</a></li>
+                        <li><a href="home-auto-insurance.html">Home & Auto Insurance</a></li>
+                        <li><a href="social-media-marketing.html">Social Media Marketing</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Contact Info</h3>
+                    <div class="contact-info">
+                        <p><i class="fas fa-phone"></i> (123) 456-7890</p>
+                        <p><i class="fas fa-envelope"></i> info@ekalpha.com</p>
+                        <p><i class="fas fa-map-marker-alt"></i> 123 Business Ave, Suite 100<br>City, State 12345</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2024 EK-Alpha Solutions. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- WhatsApp Floating Button -->
+    <div class="whatsapp-float">
+        <a href="https://wa.me/1234567890?text=Hi! I'm interested in EK-Alpha Solutions services." target="_blank" class="whatsapp-btn">
+            <i class="fab fa-whatsapp"></i>
+        </a>
+    </div>
+
+    <script>
+        // Loading screen
+        window.addEventListener('load', function() {
+            setTimeout(function() {
+                document.getElementById('loading-screen').style.opacity = '0';
+                setTimeout(function() {
+                    document.getElementById('loading-screen').style.display = 'none';
+                }, 500);
+            }, 1000);
+        });
+
+        // Mobile menu toggle
+        const hamburger = document.querySelector('.hamburger');
+        const navMenu = document.querySelector('.nav-menu');
+
+        hamburger.addEventListener('click', function() {
+            navMenu.classList.toggle('active');
+            hamburger.classList.toggle('active');
+        });
+
+        // Close mobile menu when clicking outside
+        document.addEventListener('click', function(event) {
+            if (!event.target.closest('.nav-container')) {
+                navMenu.classList.remove('active');
+                hamburger.classList.remove('active');
+            }
+        });
+    </script>
+</body>
+</html>

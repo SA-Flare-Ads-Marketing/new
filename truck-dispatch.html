@@ -1,0 +1,566 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Truck Dispatch Services - EK-Alpha Solutions</title>
+    
+    <link rel="stylesheet" href="style.css"> 
+    
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css" integrity="sha512-DxV+EoADOkOygM4IR9yXP8Sb2qwgidEmeqAEmDKIOfPRQZOWbXCzLC6vjbZyy0vPisbH2SyW27+ddLVCN+OMzQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        /* Ensures the form section fills space above the footer */
+        body { padding-top: 100px; }
+        
+        /* === Hero Section Specific to Dispatch Page === */
+        .dispatch-hero {
+            position: relative;
+            background-image: url("https://ekalphasolutions.com/wp-content/uploads/2025/08/Dry-Van.webp"); /* REPLACE WITH ACTUAL IMAGE */
+            background-size: cover;
+            background-position: center;
+            height: 400px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+
+        .dispatch-hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.7); /* Dark overlay */
+        }
+
+        .dispatch-hero-content {
+            position: relative;
+            z-index: 10;
+            color: white;
+        }
+
+        .dispatch-hero-content h1 {
+            font-size: 3.5em;
+            margin-bottom: 10px;
+            font-weight: 800;
+        }
+
+        .dispatch-hero-content p {
+            font-size: 1.4em;
+            font-weight: 300;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        /* === Service Features Section === */
+        .features-section {
+            padding: 80px 0;
+            background-color: #0a0a0a;
+        }
+        
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .feature-card {
+            background-color: #1a1a1a;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            border-left: 5px solid #007bff; /* Blue accent */
+            transition: transform 0.3s;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-5px);
+            border-left-color: #e60000; /* Red on hover */
+        }
+
+        .feature-card i {
+            font-size: 2.5em;
+            color: #e60000;
+            margin-bottom: 15px;
+        }
+
+        .feature-card h3 {
+            color: #ffffff;
+            font-size: 1.5em;
+            margin-bottom: 10px;
+        }
+        
+        .feature-card p {
+            color: #c9c9d8;
+        }
+        
+        /* === Call-to-Action / Form Section === */
+        .form-cta-section {
+            background-color: #0f0f1c; /* Dark Blue-Black */
+            padding: 80px 0;
+        }
+
+        .cta-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: center;
+        }
+
+        .cta-text h2 {
+            font-size: 2.5em;
+            color: #007bff;
+            margin-bottom: 20px;
+            border-bottom: 2px solid #33334f;
+            padding-bottom: 10px;
+        }
+
+        .cta-text p {
+            color: #ccc;
+            font-size: 1.1em;
+            margin-bottom: 20px;
+        }
+
+        /* Form Styling (Inherited from carrier-setup.html, modified slightly) */
+        .dispatch-form-container {
+            background-color: #1a1a33; /* Darker blue-black form background */
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.5);
+        }
+
+        .dispatch-form-container h3 {
+            color: #e60000;
+            text-align: center;
+            margin-bottom: 25px;
+            font-size: 1.8em;
+        }
+        
+        .form-group { margin-bottom: 15px; }
+        .form-group label {
+            display: block;
+            color: #ffffff; 
+            font-weight: 500;
+            margin-bottom: 5px;
+        }
+        
+        .form-group input,
+        .form-group select {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #333;
+            background-color: #0a0a0a; 
+            color: #ffffff;
+            border-radius: 5px;
+        }
+        
+        .submit-button-dispatch {
+            display: block;
+            width: 100%;
+            padding: 15px;
+            margin-top: 20px;
+            background: linear-gradient(45deg, #e60000, #007bff); 
+            color: #ffffff;
+            font-size: 1.2em;
+            font-weight: 700;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.5s ease-in;
+        }
+
+        .submit-button-dispatch:hover {
+            background: linear-gradient(45deg, #007bff, #e60000);
+        }
+
+        @media (max-width: 992px) {
+            .cta-grid {
+                grid-template-columns: 1fr;
+            }
+            .dispatch-hero h1 {
+                font-size: 2.5em;
+            }
+        }
+
+    </style>
+     <!-- <div id="loading-screen">
+        <div class="loader-content">
+            <div class="loader-logo">EK-ALPHA SOLUTIONS</div>
+            <div class="loader-spinner"></div>
+            <div class="loader-text">Loading Excellence...</div>
+        </div>
+    </div> -->
+    <nav class="navbar">
+         <div class="nav-title-header">
+        <h1 class="nav-main-title">EK-ALPHA SOLUTIONS</h1>
+    </div>
+        <div class="nav-container">
+            <div class="nav-logo">
+                <a href="index.html"><img src="img/unnamed (28).png" class="logo" alt="EK-Alpha Solutions Logo"></a>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="index.html#home" class="nav-link">Home</a></li>
+                  <li class="nav-dropdown">
+                    <a href="services.html" class="nav-link" id="active">Services</a>
+                    <ul class="dropdown-menu">
+                        <li><a href="truck-dispatch.html" id="active">Truck Dispatch</a></li>
+                        <li><a href="medicare.html">Medicare</a></li>
+                        <li><a href="home&autoinsurance.html">Home&Auto Insurance</a></li>
+                        <li><a href="Web Development.html">Web Development</a></li>
+                        <li><a href="social media marketing.html">Social Media Marketing</a></li>
+                    </ul>
+                </li>
+                <li><a href="carrier setup.html" class="nav-link">Carrier Setup</a></li>
+                <li><a href="portfolio.html" class="nav-link">About US</a></li>
+                <li><a href="contact.html" class="nav-link">Contact US</a></li>
+                <a href="tel:+107833464378" id="tel"><button class="but">Call Us: +10 783 346 4378</button></a>
+            </ul>
+        </div>
+    </nav>
+    
+    <section class="dispatch-hero" style="background-image: url('https://via.placeholder.com/1920x400/1a1a1a/ffffff?text=Professional+Truck+Dispatch+Header');">
+        <div class="dispatch-hero-content container">
+            <h1>Premium Truck Dispatch Services</h1>
+            <p>Maximize your revenue, minimize deadhead. We provide 24/7 support and the best freight rates for owner-operators and fleets across the USA.</p>
+        </div>
+    </section>
+
+    <section class="features-section">
+        <div class="container">
+            <h2 class="welcome-header" style="color:#ffffff;">Why Partner with EK-Alpha Dispatch?</h2>
+            
+            <div class="features-grid">
+                
+                <div class="feature-card">
+                    <i class="fas fa-search-dollar"></i>
+                    <h3>Top-Tier Rate Negotiation</h3>
+                    <p>Our dispatchers negotiate the highest rates possible on your behalf, ensuring you always get the best value for every mile.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <i class="fas fa-route"></i>
+                    <h3>Optimal Route Planning</h3>
+                    <p>We plan efficient routes to reduce deadhead miles and minimize delays, keeping your trucks profitable and on schedule.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <i class="fas fa-file-invoice"></i>
+                    <h3>Full Paperwork & Invoicing</h3>
+                    <p>We handle all administrative tasks, including managing broker packets, invoicing, and necessary documentation.</p>
+                </div>
+
+                <div class="feature-card">
+                    <i class="fas fa-headset"></i>
+                    <h3>24/7 Dedicated Support</h3>
+                    <p>You have a dedicated dispatcher available around the clock for real-time communication and immediate issue resolution.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <i class="fas fa-truck-loading"></i>
+                    <h3>Lumper/Detention Management</h3>
+                    <p>We fight for and manage payment for lumper fees and detention time, securing your compensation for unexpected delays.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <i class="fas fa-shield-alt"></i>
+                    <h3>Authority Compliance</h3>
+                    <p>We ensure all load bookings adhere strictly to your MC authority and insurance requirements for seamless operation.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+<section class="dispatch-services-grid">
+    <div class="container">
+        <div class="services-header">
+            <h2 class="section-title-left">Dispatching - Trucking Services</h2>
+            <span class="tag-with-arrow">From 3% of gross <i class="fas fa-long-arrow-alt-right"></i></span>
+        </div>
+        
+        <div class="service-cards-grid">
+            <a href="#" class="service-card large">
+                <i class="fas fa-file-invoice blue-icon"></i>
+                <div class="card-content">
+                    <h4>IFTA Reporting</h4>
+                    <p>Dispatch Service</p>
+                </div>
+                <i class="fas fa-arrow-right card-arrow"></i>
+            </a>
+            
+            <a href="#" class="service-card large">
+                <i class="fas fa-calculator red-icon"></i>
+                <div class="card-content">
+                    <h4>Truckers Accounting</h4>
+                    <p>Dispatch Service</p>
+                </div>
+                <i class="fas fa-arrow-right card-arrow"></i>
+            </a>
+
+            <a href="#" class="service-card large new-service">
+                <i class="fas fa-file-signature blue-icon"></i>
+                <div class="card-content">
+                    <h4>Document Dispatch Services</h4>
+                    <p>Dispatch Service</p>
+                    <span class="new-badge">NEW</span>
+                </div>
+                <i class="fas fa-arrow-right card-arrow"></i>
+            </a>
+
+            <a href="#" class="service-card large">
+                <i class="fas fa-clipboard red-icon"></i>
+                <div class="card-content">
+                    <h4>Trucking Paperwork Services</h4>
+                    <p>Dispatch Service</p>
+                </div>
+                <i class="fas fa-arrow-right card-arrow"></i>
+            </a>
+
+            <a href="#" class="service-card small">
+                <i class="fas fa-handshake blue-icon"></i>
+                <div class="card-content">
+                    <h4>Freight Factoring</h4>
+                    <p>Dispatch Service</p>
+                </div>
+                <i class="fas fa-arrow-right card-arrow"></i>
+            </a>
+            <a href="#" class="service-card small">
+                <i class="fas fa-shield-alt red-icon"></i>
+                <div class="card-content">
+                    <h4>DOT Compliance</h4>
+                    <p>Dispatch Service</p>
+                </div>
+                <i class="fas fa-arrow-right card-arrow"></i>
+            </a>
+            <a href="#" class="service-card small">
+                <i class="fas fa-money-bill-wave blue-icon"></i>
+                <div class="card-content">
+                    <h4>Freight Rate Negotiation</h4>
+                    <p>Dispatch Service</p>
+                </div>
+                <i class="fas fa-arrow-right card-arrow"></i>
+            </a>
+             <a href="#" class="service-card small">
+                <i class="fas fa-road red-icon"></i>
+                <div class="card-content">
+                    <h4>All Services</h4>
+                </div>
+                <i class="fas fa-arrow-right card-arrow"></i>
+            </a>
+        </div>
+    </div>
+</section>
+
+<section class="truck-type-selection">
+    <div class="container">
+        <h2 class="section-title">Choose your truck type</h2>
+        <p class="section-subtitle">Your trucks will stay loaded, your routes optimized, and your paperwork handled—so you can focus on the road.</p>
+        
+        <div class="truck-grid">
+            <div class="truck-card">
+                <div class="truck-image-placeholder" style="background-color: #e6000020;">
+                    <i class="fas fa-dolly-flatbed fa-3x red-icon"></i>
+                </div>
+                <h4>Hotshot</h4>
+            </div>
+            <div class="truck-card">
+                 <div class="truck-image-placeholder" style="background-color: #007bff20;">
+                    <i class="fas fa-truck-moving fa-3x blue-icon"></i>
+                </div>
+                <h4>Flatbed</h4>
+            </div>
+            <div class="truck-card">
+                 <div class="truck-image-placeholder" style="background-color: #e6000020;">
+                    <i class="fas fa-temperature-low fa-3x red-icon"></i>
+                </div>
+                <h4>Reefer</h4>
+            </div>
+            <div class="truck-card">
+                 <div class="truck-image-placeholder" style="background-color: #007bff20;">
+                    <i class="fas fa-box fa-3x blue-icon"></i>
+                </div>
+                <h4>Dry Van</h4>
+            </div>
+             <div class="truck-card">
+                 <div class="truck-image-placeholder" style="background-color: #e6000020;">
+                    <i class="fas fa-trailer fa-3x red-icon"></i>
+                </div>
+                <h4>Step Deck</h4>
+            </div>
+             <div class="truck-card">
+                 <div class="truck-image-placeholder" style="background-color: #007bff20;">
+                    <i class="fas fa-warehouse fa-3x blue-icon"></i>
+                </div>
+                <h4>Conestoga Trailer</h4>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="cargo-dispatch-features">
+    <div class="container">
+        <div class="feature-content-wrapper">
+            <div class="feature-list-area">
+                <h2 class="section-title-left">Cargo Dispatchers Who Work as Hard as You Do</h2>
+                <ul class="main-feature-list">
+                    <li><i class="fas fa-route red-icon"></i> **End-to-End Service:** From load search to invoicing, we handle the entire logistics chain.</li>
+                    <li><i class="fas fa-user-check blue-icon"></i> **Dedicated Dispatcher:** You get one primary point of contact who knows your needs.</li>
+                    <li><i class="fas fa-hand-pointer red-icon"></i> **You're In Control:** You approve all loads. We work for you, not the other way around.</li>
+                    <li><i class="fas fa-map-marked-alt blue-icon"></i> **Nationwide Reach:** Access to major load boards and brokers across the U.S.</li>
+                </ul>
+            </div>
+            <div class="feature-text-area">
+                <p>We understand that as an owner-operator or fleet manager, your time is valuable. Our dispatchers are not just bookers; they are partners. They meticulously negotiate the highest rates, plan the most efficient routes, and manage all the complex paperwork so you can maximize your driving time.</p>
+                <p>This dedication ensures that you run more profitable miles with less stress. We treat your cargo and your business with the same commitment you do.</p>
+                <div class="all-types-feature">
+                    <i class="fas fa-truck-loading"></i>
+                    <span>Support For All Various Types (Dry Van, Reefer, Flatbed, etc.)</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+    <section class="form-cta-section">
+        <div class="container cta-grid">
+            <div class="cta-text">
+                <h2>Ready to Maximize Your Fleet's Potential?</h2>
+                <p>Stop wasting time on load boards. Partner with our dedicated dispatch team and focus solely on driving and earning.</p>
+                <p>Fill out the quick contact form to the right, and a dispatch specialist will contact you within **one business hour** to discuss your needs and start the setup process.</p>
+                <a href="tel:+16473611093" class="call-us-button pulse" style="margin-top: 20px;">
+                    <i class="fas fa-phone-alt"></i> Call Us Directly: +1 647 361 1093
+                </a>
+            </div>
+
+            <div class="dispatch-form-container">
+                <h3>Get Started Today</h3>
+                
+<form action="https://formspree.io/f/xvonzpbn" method="POST" target="_self">                    
+                    <div class="form-group">
+                        <label for="form_name">Your Full Name *</label>
+                        <input type="text" id="form_name" name="Full_Name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="form_email">Email Address *</label>
+                        <input type="email" id="form_email" name="Email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="form_phone">Phone Number *</label>
+                        <input type="tel" id="form_phone" name="Phone" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="form_truck_type">Truck Type *</label>
+                        <select id="form_truck_type" name="Truck_Type" required>
+                            <option value="">- Select Truck Type -</option>
+                            <option value="Dry Van">Dry Van</option>
+                            <option value="Reefer">Reefer</option>
+                            <option value="Flatbed">Flatbed</option>
+                            <option value="Other">Other</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="form_mc_age">MC Authority Age</label>
+                        <select id="form_mc_age" name="MC_Authority_Age">
+                            <option value="">- Select Age of MC Authority -</option>
+                            <option value="New (0-6 months)">New (0-6 months)</option>
+                            <option value="6-12 months">6 - 12 months</option>
+                            <option value="1-2 years">1 - 2 years</option>
+                            <option value="2+ years">2+ years</option>
+                        </select>
+                    </div>
+
+                    <button type="submit" class="submit-button-dispatch">Get Your Free Dispatch Quote</button>
+                    
+                </form>
+            </div>
+        </div>
+    </section>
+    <footer class="site-footer">
+        <div class="container footer-grid">
+            
+            <div class="footer-contact">
+                <a href="#"><img src="img/unnamed (28).png" alt="EK-Alpha Logo" class="footer-logo"></a>
+                <p class="description">Providing comprehensive, trusted solutions for logistics, security, and personal services.</p>
+                <div class="contact-item">
+                    <i class="fas fa-phone red-icon"></i>
+                    <a href="tel:+16473611093">+1 (647) 361-1093</a>
+                </div>
+                <div class="contact-item">
+                    <i class="fas fa-envelope red-icon"></i>
+                    <a href="mailto:info@ekalpha.com">info@ekalpha.com</a>
+                </div>
+                <div class="contact-item">
+                    <i class="fas fa-map-marker-alt red-icon"></i>
+                    <p>3524 Silverside Rd Ste 35B, Wilmington, DE 19810, United States</p>
+                </div>
+            </div>
+
+            <div class="footer-links">
+                <h4>Company</h4>
+                <ul>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="contact.html">Contact Us</a></li>
+                    <li><a href="services.html">Services & Pricing</a></li>
+                    <li><a href="portfolio.html">Our Portfolio</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-links">
+                <h4>Services</h4>
+                <ul>
+                    <li><a href="truck-dispatch.html">Truck Dispatch Services</a></li>
+                    <li><a href="medicare.html">Medicare</a></li>
+                    <li><a href="home&autoinsurance.html">Home&Auto Insurance</a></li>
+                    <li><a href="Web Development.html">Web Development</a></li>
+                    <li><a href="social media marketing.html">Social Media Marketing</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-links">
+                <h4>Resources</h4>
+                <ul>
+                    <li><a href="#faq">FAQ</a></li>
+                    <li><a href="#">How to Get Started</a></li>
+                    <li><a href="#">Privacy Policy</a></li>
+                    <li><a href="#">Terms of Service</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <div class="container bottom-content">
+                <p>&copy; Copyright 2024 EK-Alpha Solutions. All rights reserved.</p>
+                 <div class="nav-right">
+                <div class="social-icons">
+                    <a href="https://web.facebook.com/profile.php?id=61578832953435" target="_blank" rel="noopener">
+                        <i class="fab fa-facebook-f"></i>
+                    </a>
+                    <a href="https://www.instagram.com/saflareadsmarketing/" target="_blank" rel="noopener">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                    <a href="https://www.linkedin.com/in/sa-flare-ads-marketing-418862377/" target="_blank" rel="noopener">
+                        <i class="fab fa-linkedin-in"></i>
+                    </a>
+                    <a href="https://www.youtube.com/@SAFlareAdsMarketing" target="_blank" rel="noopener">
+                        <i class="fab fa-youtube"></i>
+                    </a>
+                    <a href="https://vm.tiktok.com/ZSSkMBK7F/" target="_blank" rel="noopener">
+                        <i class="fab fa-tiktok"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </footer>
+        <!-- WhatsApp Floating Button -->
+    <div class="whatsapp-float">
+        <!-- Updated WhatsApp button color to exact green specified in blueprint -->
+        <a href="https://wa.me/+1 (647) 361-1093?text=Hi! I'm interested in getting an insurance quote." target="_blank" class="whatsapp-btn">
+            <i class="fab fa-whatsapp"></i>
+            <span class="whatsapp-tooltip">Chat with us on WhatsApp</span>
+        </a>
+    </div>
+</body>
+</html>
